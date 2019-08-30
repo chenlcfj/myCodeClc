@@ -1,13 +1,12 @@
 package com.example.scheduling.scheduling;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -40,15 +39,31 @@ public class Scheduler {
             sum += i;
         }
         System.out.println(sum + "  " + simpleDateFormat.format(new Date()) + matches);
-        List<String> list=new ArrayList<>();
+        //labmda 表达式
+        List<String> list = new ArrayList<>();
         list.add("clc");
         list.add("www");
         list.add("dll");
-        list.forEach(any-> System.out.println(any));
-        list.forEach(item->{
+        list.forEach(any -> System.out.println(any));
+        list.forEach(item -> {
             if (item.equals("dll")) {
-                System.out.println("+++++++-"+item);
+                System.out.println("+++++++-" + item);
             }
         });
+        //map集合不属于Collection，它有自己的foreach()方法
+        HashMap<String, User> map = new HashMap<>();
+        User user1 = new User();
+        user1.setId(10);
+        user1.setName("clc");
+        user1.setAge(27);
+        User user2 = new User(1);
+        User user3 = new User(2);
+        User user4 = new User(2);
+        map.put("1", user1);
+        map.put("2", user2);
+        map.put("3", user3);
+        System.out.println(map.get("1").getId());
+        map.forEach((k,v)-> v.setName("我是谁"));
+        System.out.println(map.get("1")+","+map.get("2"));
     }
 }
